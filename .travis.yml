@@ -7,16 +7,11 @@ after_failure:
   - "test/stop_server.sh"
 script:
   - coverage erase
-  - "test/start_server.sh"
-  - ls -al
+  - "./test/start_server.sh"
+  - "python test/test_launcher.py"
+  - "./test/stop_server.sh"
   - sleep 5
-  - "test/stop_server.sh"
-  - ls -al
-  - sleep 5
-  - ls -al
   - coverage combine
-  - ls -al
   - coverage report
-  - ls -al
   - coveralls
 sudo: false

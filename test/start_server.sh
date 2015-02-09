@@ -35,7 +35,8 @@ cat > ${d}/config.json <<END
 	"basic": {
 	    "cmd": [
 		"${t}", "basic"
-	    ]
+	    ],
+	    "ready_line": "Starting"
 	}
     }
 }
@@ -45,6 +46,7 @@ coverage run "${h}/launcher.py" "${d}/config.json" &> "${d}/server.log" < /dev/n
 pid=$(jobs -l %1 | awk '{print $2}')
 echo $pid > "${d}/server.pid"
 disown %1
+sleep 5
 echo "Server pid is \"$pid\""
 if kill -0 $pid ; then
     echo "Success"
