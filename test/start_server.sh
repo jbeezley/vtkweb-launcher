@@ -37,6 +37,18 @@ cat > ${d}/config.json <<END
 		"${t}", "basic"
 	    ],
 	    "ready_line": "Starting"
+	},
+	"fail": {
+	    "cmd": [
+		"${t}", "fail"
+	    ],
+	    "ready_line": "Starting"
+	},
+	"timeout": {
+	    "cmd": [
+		"${t}", "timeout"
+	    ],
+	    "ready_line": "Starting"
 	}
     }
 }

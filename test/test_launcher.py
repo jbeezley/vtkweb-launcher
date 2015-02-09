@@ -36,5 +36,26 @@ class TestLauncher(unittest.TestCase):
         )
         self.assertFalse(req.ok)
 
+    def test_bad_application(self):
+        req = requests.post(
+            'http://localhost:8080/vtk',
+            data='{"application": "unknown"}'
+        )
+        self.assertFalse(req.ok)
+
+    def test_start_fail(self):
+        req = requests.post(
+            'http://localhost:8080/vtk',
+            data='{"application": "fail"}'
+        )
+        self.assertIn('error', req.json())
+
+    def test_start_timeout(self):
+        req = requests.post(
+            'http://localhost:8080/vtk',
+            data='{"application": "timeout"}'
+        )
+        self.assertIn('error', req.json())
+
 if __name__ == '__main__':
     unittest.main()
